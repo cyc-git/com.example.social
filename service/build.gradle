@@ -1,0 +1,15 @@
+plugins {
+    id 'org.springframework.boot' version '2.6.4'
+}
+
+subprojects {
+    apply plugin: 'org.springframework.boot'
+
+    dependencies {
+        implementation project(':common:core')
+        implementation project(':common:web')
+        implementation project(':domain:user')
+
+        runtimeOnly 'com.h2database:h2'
+    }
+}

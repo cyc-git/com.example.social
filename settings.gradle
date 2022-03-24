@@ -1,1 +1,6 @@
 rootProject.name = 'example.social'
+
+include 'common:core'
+include 'common:web'
+include 'domain:user'
+include 'service:platform'
