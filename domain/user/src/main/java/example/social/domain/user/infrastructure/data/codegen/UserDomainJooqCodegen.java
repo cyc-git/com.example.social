@@ -19,6 +19,10 @@ public class UserDomainJooqCodegen {
                         new Database()
                                 .withName(MySQLDatabase.class.getName())
                                 .withInputSchema("test")
+                                .withIncludes(String.join("|",
+                                        "user",
+                                        "user_password"
+                                ))
                 )
                 .withTarget(
                         new Target()

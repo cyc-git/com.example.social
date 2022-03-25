@@ -20,6 +20,7 @@ public class User implements Serializable {
     private String account;
     private Long   createdAt;
     private Long   updatedAt;
+    private Long   deletedAt;
 
     public User() {}
 
@@ -29,6 +30,7 @@ public class User implements Serializable {
         this.account = value.account;
         this.createdAt = value.createdAt;
         this.updatedAt = value.updatedAt;
+        this.deletedAt = value.deletedAt;
     }
 
     public User(
@@ -36,13 +38,15 @@ public class User implements Serializable {
         String name,
         String account,
         Long   createdAt,
-        Long   updatedAt
+        Long   updatedAt,
+        Long   deletedAt
     ) {
         this.id = id;
         this.name = name;
         this.account = account;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
+        this.deletedAt = deletedAt;
     }
 
     /**
@@ -115,6 +119,20 @@ public class User implements Serializable {
         this.updatedAt = updatedAt;
     }
 
+    /**
+     * Getter for <code>test.user.deleted_at</code>.
+     */
+    public Long getDeletedAt() {
+        return this.deletedAt;
+    }
+
+    /**
+     * Setter for <code>test.user.deleted_at</code>.
+     */
+    public void setDeletedAt(Long deletedAt) {
+        this.deletedAt = deletedAt;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("User (");
@@ -124,6 +142,7 @@ public class User implements Serializable {
         sb.append(", ").append(account);
         sb.append(", ").append(createdAt);
         sb.append(", ").append(updatedAt);
+        sb.append(", ").append(deletedAt);
 
         sb.append(")");
         return sb.toString();

@@ -16,7 +16,7 @@ import org.jooq.ForeignKey;
 import org.jooq.Identity;
 import org.jooq.Name;
 import org.jooq.Record;
-import org.jooq.Row5;
+import org.jooq.Row6;
 import org.jooq.Schema;
 import org.jooq.Table;
 import org.jooq.TableField;
@@ -72,6 +72,11 @@ public class User extends TableImpl<UserRecord> {
      * The column <code>test.user.updated_at</code>.
      */
     public final TableField<UserRecord, Long> UPDATED_AT = createField(DSL.name("updated_at"), SQLDataType.BIGINT.nullable(false), this, "");
+
+    /**
+     * The column <code>test.user.deleted_at</code>.
+     */
+    public final TableField<UserRecord, Long> DELETED_AT = createField(DSL.name("deleted_at"), SQLDataType.BIGINT, this, "");
 
     private User(Name alias, Table<UserRecord> aliased) {
         this(alias, aliased, null);
@@ -153,11 +158,11 @@ public class User extends TableImpl<UserRecord> {
     }
 
     // -------------------------------------------------------------------------
-    // Row5 type methods
+    // Row6 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row5<Long, String, String, Long, Long> fieldsRow() {
-        return (Row5) super.fieldsRow();
+    public Row6<Long, String, String, Long, Long, Long> fieldsRow() {
+        return (Row6) super.fieldsRow();
     }
 }

@@ -20,6 +20,7 @@ public class UserRepositoryImpl implements UserRepository {
         return Optional.ofNullable(
                 ctx.selectFrom(USER)
                         .where(USER.ACCOUNT.eq(account))
+                        .and(USER.DELETED_AT.isNull())
                         .fetchOneInto(UserVo.class)
         );
     }

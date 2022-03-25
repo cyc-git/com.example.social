@@ -121,4 +121,18 @@ public class UserDao extends DAOImpl<UserRecord, example.social.domain.user.infr
     public List<example.social.domain.user.infrastructure.data.schema.tables.pojos.User> fetchByUpdatedAt(Long... values) {
         return fetch(User.USER.UPDATED_AT, values);
     }
+
+    /**
+     * Fetch records that have <code>deleted_at BETWEEN lowerInclusive AND upperInclusive</code>
+     */
+    public List<example.social.domain.user.infrastructure.data.schema.tables.pojos.User> fetchRangeOfDeletedAt(Long lowerInclusive, Long upperInclusive) {
+        return fetchRange(User.USER.DELETED_AT, lowerInclusive, upperInclusive);
+    }
+
+    /**
+     * Fetch records that have <code>deleted_at IN (values)</code>
+     */
+    public List<example.social.domain.user.infrastructure.data.schema.tables.pojos.User> fetchByDeletedAt(Long... values) {
+        return fetch(User.USER.DELETED_AT, values);
+    }
 }
