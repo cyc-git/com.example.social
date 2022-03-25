@@ -1,4 +1,4 @@
-rootProject.name = 'example.social'
+rootProject.name = 'example.app'
 
 include 'common:core'
 include 'common:web'
