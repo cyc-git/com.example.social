@@ -4,7 +4,7 @@ import example.app.domain.social.poster.PosterRepository;
 import example.app.domain.social.poster.PosterVo;
 import lombok.RequiredArgsConstructor;
 import org.jooq.DSLContext;
-import org.jooq.Record6;
+import org.jooq.Record7;
 import org.jooq.SelectJoinStep;
 import org.springframework.stereotype.Repository;
 
@@ -12,8 +12,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-import static example.app.domain.social.infrastructure.data.schema.Tables.POSTER;
-import static example.app.domain.social.infrastructure.data.schema.Tables.POSTER_FOLLOW;
+import static example.app.domain.social.infrastructure.data.schema.Tables.*;
 
 @RequiredArgsConstructor
 @Repository
@@ -45,7 +44,7 @@ public class PosterRepositoryImpl implements PosterRepository {
                 .fetchInto(PosterVo.class);
     }
 
-    SelectJoinStep<Record6<Long, String, String, Long, Object, Object>> selectBuilder() {
+    SelectJoinStep<Record7<Long, String, String, Long, Object, Object, Object>> selectBuilder() {
         return ctx.select(
                         POSTER.ID,
                         POSTER.NAME,
@@ -58,7 +57,11 @@ public class PosterRepositoryImpl implements PosterRepository {
                         ctx.selectCount()
                                 .from(POSTER_FOLLOW)
                                 .where(POSTER_FOLLOW.FOLLOWED_BY.eq(POSTER.ID))
-                                .asField("followedCount")
+                                .asField("followedCount"),
+                        ctx.selectCount()
+                                .from(POSTER_FAVORITE)
+                                .where(POSTER_FAVORITE.POSTER_ID.eq(POSTER.ID))
+                                .asField("favoritedCount")
                 )
                 .from(POSTER);
     }

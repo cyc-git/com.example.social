@@ -22,4 +22,8 @@ public interface IPosterVo {
 
     @NotNull
     Integer getFollowedCount();
+
+    @NotNull
+    Integer
+    getFavoritedCount();
 }

@@ -9,4 +9,5 @@ public class PosterVo implements IPosterVo {
     private String account;
     private Integer followerCount;
     private Integer followedCount;
+    private Integer favoritedCount;
 }
