@@ -25,7 +25,7 @@ public class UserAuthController {
     ) {
         final var user = userAuthFacade.login(account, password);
 
-        final var cookie = new Cookie("userAccount", user.getAccount());
+        final var cookie = new Cookie("userId", String.valueOf(user.getId()));
         cookie.setPath("/");
         response.addCookie(cookie);
 
@@ -34,7 +34,7 @@ public class UserAuthController {
 
     @PostMapping("/logout")
     public void logout(HttpServletResponse response) {
-        final var cookie = new Cookie("userAccount", "");
+        final var cookie = new Cookie("userId", "");
         cookie.setMaxAge(0);
         response.addCookie(cookie);
     }

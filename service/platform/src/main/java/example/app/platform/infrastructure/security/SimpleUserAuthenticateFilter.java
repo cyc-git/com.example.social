@@ -28,13 +28,14 @@ public class SimpleUserAuthenticateFilter extends OncePerRequestFilter {
         Optional.ofNullable(request.getCookies())
                 .stream()
                 .flatMap(Arrays::stream)
-                .filter(c -> Objects.equals(c.getName(), "userAccount"))
+                .filter(c -> Objects.equals(c.getName(), "userId"))
                 .findAny()
                 .map(Cookie::getValue)
-                .flatMap(posterService::findByAccount)
-                .ifPresent(iUserVo ->
+                .map(Long::valueOf)
+                .filter(posterId -> posterService.findById(posterId).isPresent())
+                .ifPresent(posterId ->
                         SecurityContextHolder.getContext()
-                                .setAuthentication(new UsernamePasswordAuthenticationToken(iUserVo, null, List.of()))
+                                .setAuthentication(new UsernamePasswordAuthenticationToken(posterId, null, List.of()))
                 );
     }
 

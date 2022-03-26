@@ -1,7 +1,6 @@
 package example.app.platform.social.application.controller;
 
 import example.app.common.web.dto.ResponseDto;
-import example.app.domain.social.poster.IPosterVo;
 import example.app.platform.social.application.dto.output.PosterDto;
 import example.app.platform.social.application.facade.PosterFollowFacade;
 import lombok.RequiredArgsConstructor;
@@ -19,33 +18,33 @@ public class PosterFollowController {
 
     @GetMapping("all-followers")
     public ResponseDto<List<PosterDto>> findFollower(
-            @AuthenticationPrincipal IPosterVo posterVo
+            @AuthenticationPrincipal Long currentPosterId
     ) {
-        return ResponseDto.of(posterFollowFacade.findFollower(posterVo.getId()));
+        return ResponseDto.of(posterFollowFacade.findFollower(currentPosterId));
     }
 
     @GetMapping("all-followed")
     public ResponseDto<List<PosterDto>> findFollowed(
-            @AuthenticationPrincipal IPosterVo posterVo
+            @AuthenticationPrincipal Long currentPosterId
     ) {
-        return ResponseDto.of(posterFollowFacade.findFollowed(posterVo.getId()));
+        return ResponseDto.of(posterFollowFacade.findFollowed(currentPosterId));
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @PostMapping
     public void follow(
             @RequestParam Long posterId,
-            @AuthenticationPrincipal IPosterVo posterVo
+            @AuthenticationPrincipal Long currentPosterId
     ) {
-        posterFollowFacade.follow(posterId, posterVo.getId());
+        posterFollowFacade.follow(posterId, currentPosterId);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping
     public void unfollow(
             @RequestParam Long posterId,
-            @AuthenticationPrincipal IPosterVo posterVo
+            @AuthenticationPrincipal Long currentPosterId
     ) {
-        posterFollowFacade.unfollow(posterId, posterVo.getId());
+        posterFollowFacade.unfollow(posterId, currentPosterId);
     }
 }

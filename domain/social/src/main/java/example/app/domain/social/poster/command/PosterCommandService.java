@@ -4,7 +4,6 @@ import example.app.core.i18n.I18nAsserts;
 import example.app.domain.social.poster.PosterCacheName;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
@@ -17,17 +16,9 @@ import javax.validation.constraints.NotNull;
 public class PosterCommandService {
     private final PosterCommandRepository posterCommandRepository;
 
-    @Caching(
-            evict = {
-                    @CacheEvict(
-                            cacheNames = PosterCacheName.SINGLE_BY_ID,
-                            key = "#createPosterVo.id"
-                    ),
-                    @CacheEvict(
-                            cacheNames = PosterCacheName.SINGLE_BY_ACCOUNT,
-                            key = "#createPosterVo.account"
-                    )
-            }
+    @CacheEvict(
+            cacheNames = PosterCacheName.SINGLE_BY_ID,
+            key = "#createPosterVo.id"
     )
     public void create(@NotNull @Valid CreatePosterVo createPosterVo) {
         I18nAsserts.isFalse(

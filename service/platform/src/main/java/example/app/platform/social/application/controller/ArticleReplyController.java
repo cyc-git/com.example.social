@@ -1,7 +1,6 @@
 package example.app.platform.social.application.controller;
 
 import example.app.common.web.dto.ResponseDto;
-import example.app.domain.social.poster.IPosterVo;
 import example.app.platform.social.application.dto.input.CreateArticleReplyDto;
 import example.app.platform.social.application.dto.output.ArticleReplyAggregateDto;
 import example.app.platform.social.application.dto.output.ArticleReplyDto;
@@ -28,8 +27,8 @@ public class ArticleReplyController {
     @PostMapping
     public ResponseDto<ArticleReplyDto> reply(
             @RequestBody CreateArticleReplyDto createArticleReplyDto,
-            @AuthenticationPrincipal IPosterVo posterVo
+            @AuthenticationPrincipal Long currentPosterId
     ) {
-        return ResponseDto.of(articleReplyFacade.reply(createArticleReplyDto, posterVo.getId()));
+        return ResponseDto.of(articleReplyFacade.reply(createArticleReplyDto, currentPosterId));
     }
 }

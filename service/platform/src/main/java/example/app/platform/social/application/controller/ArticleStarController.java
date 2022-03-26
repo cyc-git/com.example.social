@@ -1,7 +1,6 @@
 package example.app.platform.social.application.controller;
 
 import example.app.common.web.dto.ResponseDto;
-import example.app.domain.social.poster.IPosterVo;
 import example.app.platform.social.application.dto.output.PosterDto;
 import example.app.platform.social.application.facade.ArticleStarFacade;
 import lombok.RequiredArgsConstructor;
@@ -28,17 +27,17 @@ public class ArticleStarController {
     @PostMapping
     public void star(
             @RequestParam Long articleId,
-            @AuthenticationPrincipal IPosterVo posterVo
+            @AuthenticationPrincipal Long currentPosterId
     ) {
-        articleStarFacade.star(articleId, posterVo.getId());
+        articleStarFacade.star(articleId, currentPosterId);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping
     public void unstar(
             @RequestParam Long articleId,
-            @AuthenticationPrincipal IPosterVo posterVo
+            @AuthenticationPrincipal Long currentPosterId
     ) {
-        articleStarFacade.unstar(articleId, posterVo.getId());
+        articleStarFacade.unstar(articleId, currentPosterId);
     }
 }

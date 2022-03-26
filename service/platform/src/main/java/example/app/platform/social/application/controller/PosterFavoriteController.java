@@ -1,7 +1,6 @@
 package example.app.platform.social.application.controller;
 
 import example.app.common.web.dto.ResponseDto;
-import example.app.domain.social.poster.IPosterVo;
 import example.app.platform.social.application.dto.output.ArticleDto;
 import example.app.platform.social.application.facade.PosterFavoriteFacade;
 import lombok.RequiredArgsConstructor;
@@ -19,26 +18,26 @@ public class PosterFavoriteController {
 
     @GetMapping("all")
     public ResponseDto<List<ArticleDto>> findAll(
-            @AuthenticationPrincipal IPosterVo posterVo
+            @AuthenticationPrincipal Long currentPosterId
     ) {
-        return ResponseDto.of(posterFavoriteFacade.findFavoriteArticles(posterVo.getId()));
+        return ResponseDto.of(posterFavoriteFacade.findFavoriteArticles(currentPosterId));
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @PostMapping
     public void favorite(
             @RequestParam Long articleId,
-            @AuthenticationPrincipal IPosterVo posterVo
+            @AuthenticationPrincipal Long currentPosterId
     ) {
-        posterFavoriteFacade.favorite(posterVo.getId(), articleId);
+        posterFavoriteFacade.favorite(currentPosterId, articleId);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping
     public void unfavorite(
             @RequestParam Long articleId,
-            @AuthenticationPrincipal IPosterVo posterVo
+            @AuthenticationPrincipal Long currentPosterId
     ) {
-        posterFavoriteFacade.unfavorite(posterVo.getId(), articleId);
+        posterFavoriteFacade.unfavorite(currentPosterId, articleId);
     }
 }
