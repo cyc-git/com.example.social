@@ -13,7 +13,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
 import javax.validation.constraints.NotNull;
+import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Validated
@@ -40,6 +43,17 @@ public class ArticleFacade {
                     retrieveSharingArticle(dto, vo.getSharingArticleId());
                     return dto;
                 });
+    }
+
+    public List<ArticleDto> findByIds(Set<Long> ids) {
+        return articleService.findByIds(ids)
+                .stream()
+                .map(vo -> {
+                    final var dto = convert(vo);
+                    retrieveSharingArticle(dto, vo.getSharingArticleId());
+                    return dto;
+                })
+                .collect(Collectors.toList());
     }
 
     void retrieveSharingArticle(ArticleDto dto, @Nullable Long sharingArticleId) {

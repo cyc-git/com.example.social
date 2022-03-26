@@ -8,6 +8,7 @@ import org.jooq.Field;
 import org.springframework.stereotype.Repository;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -40,5 +41,16 @@ public class ArticleRepositoryImpl implements ArticleRepository {
                         .groupBy(ARTICLE.ID)
                         .fetchOneInto(ArticleVo.class)
         );
+    }
+
+    @Override
+    public List<ArticleVo> findByIds(Set<Long> ids) {
+        return ctx.select(articleFields)
+                .from(ARTICLE)
+                .leftJoin(ARTICLE_REPLY).on(ARTICLE.ID.eq(ARTICLE_REPLY.ARTICLE_ID))
+                .leftJoin(ARTICLE_STAR).on(ARTICLE.ID.eq(ARTICLE_STAR.ARTICLE_ID))
+                .where(ARTICLE.ID.in(ids))
+                .groupBy(ARTICLE.ID)
+                .fetchInto(ArticleVo.class);
     }
 }
