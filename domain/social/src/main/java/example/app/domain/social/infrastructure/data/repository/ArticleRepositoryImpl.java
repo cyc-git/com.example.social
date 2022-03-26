@@ -14,7 +14,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import static example.app.domain.social.infrastructure.data.schema.Tables.*;
-import static org.jooq.impl.DSL.count;
+import static org.jooq.impl.DSL.countDistinct;
 
 @RequiredArgsConstructor
 @Repository
@@ -25,8 +25,8 @@ public class ArticleRepositoryImpl implements ArticleRepository {
 
     static {
         final var fields = Arrays.stream(ARTICLE.fields()).collect(Collectors.toList());
-        fields.add(count(ARTICLE_REPLY.REPLIED_BY).as("replyCount"));
-        fields.add(count(ARTICLE_STAR.STARED_BY).as("starCount"));
+        fields.add(countDistinct(ARTICLE_REPLY.ID).as("replyCount"));
+        fields.add(countDistinct(ARTICLE_STAR.STARED_BY).as("starCount"));
         articleFields = Set.copyOf(fields);
     }
 
