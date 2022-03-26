@@ -1,6 +1,7 @@
 package example.app.domain.social.poster;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
@@ -19,12 +20,14 @@ import java.util.Set;
 public class PosterService {
     private final PosterRepository posterRepository;
 
+    @Cacheable(PosterCacheName.SINGLE_BY_ACCOUNT)
     public Optional<IPosterVo> findByAccount(
             @NotBlank @Size(max = 255) String account
     ) {
         return posterRepository.findByAccount(account).map(p -> p);
     }
 
+    @Cacheable(PosterCacheName.SINGLE_BY_ID)
     public Optional<IPosterVo> findById(@NotNull Long id) {
         return posterRepository.findById(id).map(p -> p);
     }
