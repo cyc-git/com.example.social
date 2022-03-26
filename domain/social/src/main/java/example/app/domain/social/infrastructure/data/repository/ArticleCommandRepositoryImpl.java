@@ -31,7 +31,6 @@ public class ArticleCommandRepositoryImpl extends ArticleDao implements ArticleC
         this.insert(article);
         final var vo = new ArticleVo();
         CachedBeanCopier.copy(article, vo);
-        vo.setFavoriteCount(0);
         vo.setReplyCount(0);
         vo.setStarCount(0);
         return vo;

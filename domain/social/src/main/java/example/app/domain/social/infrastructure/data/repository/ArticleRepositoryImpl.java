@@ -24,7 +24,6 @@ public class ArticleRepositoryImpl implements ArticleRepository {
 
     static {
         final var fields = Arrays.stream(ARTICLE.fields()).collect(Collectors.toList());
-        fields.add(count(ARTICLE_FAVORITE.FAVORITED_BY).as("favoriteCount"));
         fields.add(count(ARTICLE_REPLY.REPLIED_BY).as("replyCount"));
         fields.add(count(ARTICLE_STAR.STARED_BY).as("starCount"));
         articleFields = Set.copyOf(fields);
@@ -35,7 +34,6 @@ public class ArticleRepositoryImpl implements ArticleRepository {
         return Optional.ofNullable(
                 ctx.select(articleFields)
                         .from(ARTICLE)
-                        .leftJoin(ARTICLE_FAVORITE).on(ARTICLE.ID.eq(ARTICLE_FAVORITE.ARTICLE_ID))
                         .leftJoin(ARTICLE_REPLY).on(ARTICLE.ID.eq(ARTICLE_REPLY.ARTICLE_ID))
                         .leftJoin(ARTICLE_STAR).on(ARTICLE.ID.eq(ARTICLE_STAR.ARTICLE_ID))
                         .where(ARTICLE.ID.eq(id))

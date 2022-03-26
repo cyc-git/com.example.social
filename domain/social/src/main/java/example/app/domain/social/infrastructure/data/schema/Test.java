@@ -5,10 +5,10 @@ package example.app.domain.social.infrastructure.data.schema;
 
 
 import example.app.domain.social.infrastructure.data.schema.tables.Article;
-import example.app.domain.social.infrastructure.data.schema.tables.ArticleFavorite;
 import example.app.domain.social.infrastructure.data.schema.tables.ArticleReply;
 import example.app.domain.social.infrastructure.data.schema.tables.ArticleStar;
 import example.app.domain.social.infrastructure.data.schema.tables.Poster;
+import example.app.domain.social.infrastructure.data.schema.tables.PosterFavorite;
 import example.app.domain.social.infrastructure.data.schema.tables.PosterFollow;
 
 import java.util.Arrays;
@@ -38,11 +38,6 @@ public class Test extends SchemaImpl {
     public final Article ARTICLE = Article.ARTICLE;
 
     /**
-     * The table <code>test.article_favorite</code>.
-     */
-    public final ArticleFavorite ARTICLE_FAVORITE = ArticleFavorite.ARTICLE_FAVORITE;
-
-    /**
      * The table <code>test.article_reply</code>.
      */
     public final ArticleReply ARTICLE_REPLY = ArticleReply.ARTICLE_REPLY;
@@ -56,6 +51,11 @@ public class Test extends SchemaImpl {
      * The table <code>test.poster</code>.
      */
     public final Poster POSTER = Poster.POSTER;
+
+    /**
+     * The table <code>test.poster_favorite</code>.
+     */
+    public final PosterFavorite POSTER_FAVORITE = PosterFavorite.POSTER_FAVORITE;
 
     /**
      * The table <code>test.poster_follow</code>.
@@ -79,10 +79,10 @@ public class Test extends SchemaImpl {
     public final List<Table<?>> getTables() {
         return Arrays.<Table<?>>asList(
             Article.ARTICLE,
-            ArticleFavorite.ARTICLE_FAVORITE,
             ArticleReply.ARTICLE_REPLY,
             ArticleStar.ARTICLE_STAR,
             Poster.POSTER,
+            PosterFavorite.POSTER_FAVORITE,
             PosterFollow.POSTER_FOLLOW);
     }
 }

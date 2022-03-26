@@ -23,9 +23,9 @@ public class SocialDomainJooqCodegen {
                                         "article",
                                         "article_reply",
                                         "article_star",
-                                        "article_favorite",
                                         "poster",
-                                        "poster_follow"
+                                        "poster_follow",
+                                        "poster_favorite"
                                 ))
                 )
                 .withTarget(

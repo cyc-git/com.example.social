@@ -5,10 +5,10 @@ package example.app.domain.social.infrastructure.data.schema;
 
 
 import example.app.domain.social.infrastructure.data.schema.tables.Article;
-import example.app.domain.social.infrastructure.data.schema.tables.ArticleFavorite;
 import example.app.domain.social.infrastructure.data.schema.tables.ArticleReply;
 import example.app.domain.social.infrastructure.data.schema.tables.ArticleStar;
 import example.app.domain.social.infrastructure.data.schema.tables.Poster;
+import example.app.domain.social.infrastructure.data.schema.tables.PosterFavorite;
 import example.app.domain.social.infrastructure.data.schema.tables.PosterFollow;
 
 
@@ -24,11 +24,6 @@ public class Tables {
     public static final Article ARTICLE = Article.ARTICLE;
 
     /**
-     * The table <code>test.article_favorite</code>.
-     */
-    public static final ArticleFavorite ARTICLE_FAVORITE = ArticleFavorite.ARTICLE_FAVORITE;
-
-    /**
      * The table <code>test.article_reply</code>.
      */
     public static final ArticleReply ARTICLE_REPLY = ArticleReply.ARTICLE_REPLY;
@@ -42,6 +37,11 @@ public class Tables {
      * The table <code>test.poster</code>.
      */
     public static final Poster POSTER = Poster.POSTER;
+
+    /**
+     * The table <code>test.poster_favorite</code>.
+     */
+    public static final PosterFavorite POSTER_FAVORITE = PosterFavorite.POSTER_FAVORITE;
 
     /**
      * The table <code>test.poster_follow</code>.

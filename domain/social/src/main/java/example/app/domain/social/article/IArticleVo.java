@@ -17,9 +17,6 @@ public interface IArticleVo {
     String getContent();
 
     @NotNull
-    Integer getFavoriteCount();
-
-    @NotNull
     Integer getReplyCount();
 
     @NotNull

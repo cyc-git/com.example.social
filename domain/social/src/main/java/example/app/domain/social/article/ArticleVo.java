@@ -7,7 +7,6 @@ public class ArticleVo implements IArticleVo {
     private Long id;
     private Long posterId;
     private String content;
-    private Integer favoriteCount;
     private Integer replyCount;
     private Integer starCount;
     private Long postedAt;

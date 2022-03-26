@@ -47,18 +47,6 @@ create table article
         foreign key (sharing_article_id) references article (id)
 );
 
-create table article_favorite
-(
-    article_id   bigint not null comment 'the article id',
-    favorited_by bigint not null comment 'the poster id who favorited the article',
-    favorited_at bigint not null comment 'the favorited time',
-    primary key (article_id, favorited_by),
-    constraint article_favorite_FK
-        foreign key (article_id) references article (id),
-    constraint article_favorite_FK_1
-        foreign key (favorited_by) references poster (id)
-);
-
 create table article_reply
 (
     id         bigint auto_increment comment 'id'
@@ -96,4 +84,16 @@ create table poster_follow
         foreign key (poster_id) references poster (id),
     constraint poster_follower_FK_1
         foreign key (followed_by) references poster (id)
+);
+
+create table poster_favorite
+(
+    poster_id    bigint not null comment 'the poster id',
+    article_id   bigint not null comment 'the favorited article id',
+    favorited_at bigint not null comment 'the favorited time',
+    primary key (poster_id, article_id),
+    constraint poster_favorite_FK
+        foreign key (poster_id) references poster (id),
+    constraint poster_favorite_FK_1
+        foreign key (article_id) references article (id)
 );
