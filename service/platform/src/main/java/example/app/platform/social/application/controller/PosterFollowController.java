@@ -14,7 +14,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/poster/follow")
-public class PostFollowController {
+public class PosterFollowController {
     private final PosterFollowFacade posterFollowFacade;
 
     @GetMapping("find-all-followers")
