@@ -39,6 +39,7 @@ public class ArticleRepositoryImpl implements ArticleRepository {
                         .leftJoin(ARTICLE_REPLY).on(ARTICLE.ID.eq(ARTICLE_REPLY.ARTICLE_ID))
                         .leftJoin(ARTICLE_STAR).on(ARTICLE.ID.eq(ARTICLE_STAR.ARTICLE_ID))
                         .where(ARTICLE.ID.eq(id))
+                        .groupBy(ARTICLE.ID)
                         .fetchOneInto(ArticleVo.class)
         );
     }
