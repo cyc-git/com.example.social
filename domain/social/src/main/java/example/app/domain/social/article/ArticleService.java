@@ -1,6 +1,7 @@
 package example.app.domain.social.article;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
@@ -17,6 +18,7 @@ import java.util.Set;
 public class ArticleService {
     private final ArticleRepository articleRepository;
 
+    @Cacheable(ArticleCacheName.SINGLE_BY_ID)
     public Optional<IArticleVo> findById(@NotNull Long id) {
         return articleRepository.findById(id).map(a -> a);
     }

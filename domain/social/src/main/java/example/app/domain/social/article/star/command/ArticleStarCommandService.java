@@ -1,8 +1,12 @@
 package example.app.domain.social.article.star.command;
 
 import example.app.core.i18n.I18nAsserts;
+import example.app.domain.social.article.ArticleCacheName;
 import example.app.domain.social.article.ArticleService;
+import example.app.domain.social.article.star.ArticleStarCacheName;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
@@ -17,6 +21,18 @@ public class ArticleStarCommandService {
     private final ArticleStarCommandRepository articleStarCommandRepository;
     private final Clock clock;
 
+    @Caching(
+            evict = {
+                    @CacheEvict(
+                            cacheNames = ArticleStarCacheName.MULTIPLE_BY_ARTICLE_ID,
+                            key = "#articleId"
+                    ),
+                    @CacheEvict(
+                            cacheNames = ArticleCacheName.SINGLE_BY_ID,
+                            key = "#articleId"
+                    )
+            }
+    )
     public void star(
             @NotNull Long articleId,
             @NotNull Long staredBy
@@ -29,6 +45,18 @@ public class ArticleStarCommandService {
         articleStarCommandRepository.star(articleId, staredBy, clock.millis());
     }
 
+    @Caching(
+            evict = {
+                    @CacheEvict(
+                            cacheNames = ArticleStarCacheName.MULTIPLE_BY_ARTICLE_ID,
+                            key = "#articleId"
+                    ),
+                    @CacheEvict(
+                            cacheNames = ArticleCacheName.SINGLE_BY_ID,
+                            key = "#articleId"
+                    )
+            }
+    )
     public void unstar(
             @NotNull Long articleId,
             @NotNull Long staredBy

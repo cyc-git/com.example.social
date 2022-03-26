@@ -7,6 +7,7 @@ import example.app.platform.social.application.dto.output.ArticleAggregateDto;
 import example.app.platform.social.application.dto.output.ArticleDto;
 import example.app.platform.social.application.facade.ArticleFacade;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 public class ArticleController {
     private final ArticleFacade articleFacade;
 
+    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
     public ResponseDto<ArticleDto> create(
             @RequestBody CreateArticleDto createArticleDto,

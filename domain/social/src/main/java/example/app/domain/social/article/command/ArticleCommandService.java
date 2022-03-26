@@ -1,9 +1,11 @@
 package example.app.domain.social.article.command;
 
 import example.app.core.i18n.I18nAsserts;
+import example.app.domain.social.article.ArticleCacheName;
 import example.app.domain.social.article.ArticleService;
 import example.app.domain.social.article.IArticleVo;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
@@ -20,6 +22,10 @@ public class ArticleCommandService {
     private final ArticleCommandRepository articleCommandRepository;
     private final Clock clock;
 
+    @CacheEvict(
+            cacheNames = ArticleCacheName.SINGLE_BY_ID,
+            key = "#result.id"
+    )
     public IArticleVo create(@NotNull @Valid CreateArticleVo createArticleVo) {
         final var hasSharingArticle = createArticleVo.getSharingArticleId() != null;
         final var sharingArticle =
