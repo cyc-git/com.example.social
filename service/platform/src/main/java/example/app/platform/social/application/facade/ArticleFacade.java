@@ -33,7 +33,7 @@ public class ArticleFacade {
         vo.setPosterId(posterId);
         final var dto = convert(articleCommandService.create(vo));
         retrieveSharingArticle(dto, createArticleDto.getSharingArticleId());
-        return convert(articleCommandService.create(vo));
+        return dto;
     }
 
     public Optional<ArticleDto> find(Long id) {
