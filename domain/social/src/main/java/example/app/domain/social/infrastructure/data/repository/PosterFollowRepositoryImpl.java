@@ -21,4 +21,11 @@ public class PosterFollowRepositoryImpl implements PosterFollowRepository {
                 .where(POSTER_FOLLOW.POSTER_ID.eq(posterId))
                 .fetchInto(PosterFollowVo.class);
     }
+
+    @Override
+    public List<PosterFollowVo> findByFollowedBy(long posterId) {
+        return ctx.selectFrom(POSTER_FOLLOW)
+                .where(POSTER_FOLLOW.FOLLOWED_BY.eq(posterId))
+                .fetchInto(PosterFollowVo.class);
+    }
 }

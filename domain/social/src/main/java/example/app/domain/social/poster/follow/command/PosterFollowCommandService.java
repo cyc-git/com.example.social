@@ -8,6 +8,7 @@ import org.springframework.validation.annotation.Validated;
 
 import javax.validation.constraints.NotNull;
 import java.time.Clock;
+import java.util.Objects;
 
 @RequiredArgsConstructor
 @Validated
@@ -21,6 +22,10 @@ public class PosterFollowCommandService {
             @NotNull Long posterId,
             @NotNull Long followedBy
     ) {
+        I18nAsserts.isFalse(
+                Objects.equals(posterId, followedBy),
+                PosterFollowCommandI18nKey.SELF_FOLLOW
+        );
         I18nAsserts.isTrue(
                 posterService.findById(posterId).isPresent(),
                 PosterFollowCommandI18nKey.RELATED_POSTER_DOES_NOT_EXIST
