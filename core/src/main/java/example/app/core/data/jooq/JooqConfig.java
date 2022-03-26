@@ -1,4 +1,4 @@
-package example.app.common.core.data.jooq;
+package example.app.core.data.jooq;
 
 import org.jooq.DSLContext;
 import org.jooq.SQLDialect;

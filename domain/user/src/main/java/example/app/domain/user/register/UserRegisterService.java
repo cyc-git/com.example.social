@@ -1,6 +1,6 @@
 package example.app.domain.user.register;
 
-import example.app.common.core.i18n.exception.I18nIllegalArgumentException;
+import example.app.core.i18n.exception.I18nIllegalArgumentException;
 import example.app.domain.user.IUserVo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;

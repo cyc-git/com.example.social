@@ -1,6 +1,6 @@
-package example.app.common.core.i18n;
+package example.app.core.i18n;
 
-import example.app.common.core.i18n.exception.I18nIllegalArgumentException;
+import example.app.core.i18n.exception.I18nIllegalArgumentException;
 import lombok.experimental.UtilityClass;
 
 @UtilityClass

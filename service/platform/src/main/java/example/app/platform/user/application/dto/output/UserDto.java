@@ -1,6 +1,6 @@
 package example.app.platform.user.application.dto.output;
 
-import example.app.common.core.util.CachedBeanCopier;
+import example.app.core.util.CachedBeanCopier;
 import example.app.domain.user.IUserVo;
 import example.app.domain.user.UserVo;
 import lombok.Data;

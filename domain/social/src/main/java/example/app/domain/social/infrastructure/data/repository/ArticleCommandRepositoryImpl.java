@@ -1,6 +1,6 @@
 package example.app.domain.social.infrastructure.data.repository;
 
-import example.app.common.core.util.CachedBeanCopier;
+import example.app.core.util.CachedBeanCopier;
 import example.app.domain.social.article.ArticleVo;
 import example.app.domain.social.article.command.ArticleCommandRepository;
 import example.app.domain.social.article.command.CreateArticleVo;

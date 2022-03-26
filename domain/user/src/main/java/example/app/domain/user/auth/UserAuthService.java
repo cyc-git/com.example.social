@@ -1,6 +1,6 @@
 package example.app.domain.user.auth;
 
-import example.app.common.core.i18n.exception.I18nForbiddenException;
+import example.app.core.i18n.exception.I18nForbiddenException;
 import example.app.domain.user.UserService;
 import example.app.domain.user.IUserVo;
 import lombok.RequiredArgsConstructor;

@@ -1,6 +1,6 @@
 subprojects {
     dependencies {
-        implementation project(':common:core')
+        implementation project(':core')
 
         implementation 'org.jooq:jooq-codegen'
         implementation 'mysql:mysql-connector-java'

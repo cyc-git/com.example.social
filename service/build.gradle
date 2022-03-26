@@ -6,7 +6,7 @@ subprojects {
     apply plugin: 'org.springframework.boot'
 
     dependencies {
-        implementation project(':common:core')
+        implementation project(':core')
         implementation project(':common:web')
         implementation project(':domain:user')
 

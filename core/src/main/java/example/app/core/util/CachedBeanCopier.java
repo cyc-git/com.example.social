@@ -1,4 +1,4 @@
-package example.app.common.core.util;
+package example.app.core.util;
 
 import lombok.experimental.UtilityClass;
 import org.springframework.cglib.beans.BeanCopier;

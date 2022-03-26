@@ -1,6 +1,6 @@
 package example.app.domain.social.article.favorite.command;
 
-import example.app.common.core.i18n.I18nAsserts;
+import example.app.core.i18n.I18nAsserts;
 import example.app.domain.social.article.ArticleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

@@ -1,6 +1,6 @@
 rootProject.name = 'example.app'
 
-include 'common:core'
+include 'core'
 include 'common:web'
 include 'domain:user'
 include 'domain:social'

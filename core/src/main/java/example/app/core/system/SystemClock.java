@@ -1,4 +1,4 @@
-package example.app.common.core.system;
+package example.app.core.system;
 
 import java.time.Clock;
 import java.time.Instant;

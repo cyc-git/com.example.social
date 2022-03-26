@@ -1,4 +1,4 @@
-package example.app.common.core.i18n.exception;
+package example.app.core.i18n.exception;
 
 import lombok.Getter;
 

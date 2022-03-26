@@ -1,6 +1,6 @@
 package example.app.domain.user.infrastructure.data.repository;
 
-import example.app.common.core.util.CachedBeanCopier;
+import example.app.core.util.CachedBeanCopier;
 import example.app.domain.user.UserVo;
 import example.app.domain.user.infrastructure.data.schema.tables.daos.UserDao;
 import example.app.domain.user.infrastructure.data.schema.tables.daos.UserPasswordDao;

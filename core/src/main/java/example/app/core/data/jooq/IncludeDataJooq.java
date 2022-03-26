@@ -1,4 +1,4 @@
-package example.app.common.core.data.jooq;
+package example.app.core.data.jooq;
 
 import org.springframework.context.annotation.Import;
 
@@ -10,5 +10,5 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
 @Documented
-public @interface IncludeCommonDataJooq {
+public @interface IncludeDataJooq {
 }
