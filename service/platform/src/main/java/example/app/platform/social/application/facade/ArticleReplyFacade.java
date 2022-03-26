@@ -1,11 +1,10 @@
 package example.app.platform.social.application.facade;
 
-import example.app.core.util.CachedBeanCopier;
 import example.app.domain.social.article.reply.ArticleReplyService;
-import example.app.domain.social.article.reply.IArticleReplyVo;
 import example.app.domain.social.article.reply.command.ArticleReplyCommandService;
 import example.app.domain.social.article.reply.command.CreateArticleReplyVo;
 import example.app.platform.social.application.dto.input.CreateArticleReplyDto;
+import example.app.platform.social.application.dto.output.ArticleReplyAggregateDto;
 import example.app.platform.social.application.dto.output.ArticleReplyDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -30,20 +29,26 @@ public class ArticleReplyFacade {
         vo.setContent(createArticleReplyDto.getContent());
         vo.setArticleId(createArticleReplyDto.getArticleId());
         vo.setRepliedBy(posterId);
-        return convert(articleReplyCommandService.create(vo));
+        return new ArticleReplyDto(articleReplyCommandService.create(vo));
     }
 
-    public List<ArticleReplyDto> findByArticleId(Long articleId) {
-        return articleReplyService.findByArticleId(articleId)
+    public ArticleReplyAggregateDto findByArticleId(Long articleId) {
+        final var result = new ArticleReplyAggregateDto();
+        final var replies = articleReplyService.findByArticleId(articleId)
                 .stream()
-                .map(this::convert)
+                .map(ArticleReplyDto::new)
                 .collect(Collectors.toList());
-    }
+        result.setReplies(replies);
 
-    ArticleReplyDto convert(IArticleReplyVo replyVo) {
-        final var dto = new ArticleReplyDto();
-        CachedBeanCopier.copy(replyVo, dto);
-        posterFacade.find(replyVo.getRepliedBy()).ifPresent(dto::setRepliedBy);
-        return dto;
+        final var posterIds = replies.stream()
+                .map(ArticleReplyDto::getRepliedBy)
+                .collect(Collectors.toSet());
+        if (posterIds.isEmpty()) {
+            result.setPosters(List.of());
+        } else {
+            result.setPosters(posterFacade.findByIds(posterIds));
+        }
+
+        return result;
     }
 }

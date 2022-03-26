@@ -1,18 +1,20 @@
 package example.app.platform.social.application.dto.output;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import example.app.core.util.CachedBeanCopier;
+import example.app.domain.social.article.ArticleVo;
+import example.app.domain.social.article.IArticleVo;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
-public class ArticleDto {
-    private Long id;
-    private PosterDto poster;
-    private String content;
-    private Integer favoriteCount;
-    private Integer replyCount;
-    private Integer starCount;
-    private Long postedAt;
-    private Long updatedAt;
-    private ArticleDto sharingArticle;
+@NoArgsConstructor
+@EqualsAndHashCode(callSuper = true)
+public class ArticleDto extends ArticleVo {
+
+    public ArticleDto(IArticleVo articleVo) {
+        CachedBeanCopier.copy(articleVo, this);
+    }
 }
