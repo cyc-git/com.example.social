@@ -8,7 +8,9 @@ subprojects {
     dependencies {
         implementation project(':core')
         implementation project(':common:web')
+        implementation project(':common:event')
         implementation project(':domain:user')
+        implementation project(':domain:social')
 
         runtimeOnly 'com.h2database:h2'
     }

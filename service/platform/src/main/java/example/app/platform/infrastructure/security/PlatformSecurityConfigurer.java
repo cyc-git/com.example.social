@@ -1,6 +1,6 @@
 package example.app.platform.infrastructure.security;
 
-import example.app.domain.user.UserService;
+import example.app.domain.social.poster.PosterService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -11,7 +11,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @RequiredArgsConstructor
 @Configuration
 public class PlatformSecurityConfigurer extends WebSecurityConfigurerAdapter {
-    private final UserService userService;
+    private final PosterService posterService;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -30,7 +30,7 @@ public class PlatformSecurityConfigurer extends WebSecurityConfigurerAdapter {
                 .anyRequest()
                 .authenticated()
                 .and()
-                .addFilterBefore(new SimpleUserAuthenticateFilter(userService), UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(new SimpleUserAuthenticateFilter(posterService), UsernamePasswordAuthenticationFilter.class)
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()

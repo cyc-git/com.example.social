@@ -1,10 +1,19 @@
 package example.app.domain.social.poster.command;
 
-import example.app.domain.social.poster.PosterVo;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Data
-@EqualsAndHashCode(callSuper = true)
-public class CreatePosterVo extends PosterVo {
+public class CreatePosterVo {
+    @NotNull
+    private Long id;
+    @NotBlank
+    @Size(max = 100)
+    private String name;
+    @NotBlank
+    @Size(max = 255)
+    private String account;
 }

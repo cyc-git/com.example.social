@@ -1,6 +1,6 @@
 package example.app.platform.infrastructure.security;
 
-import example.app.domain.user.UserService;
+import example.app.domain.social.poster.PosterService;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -18,10 +18,10 @@ import java.util.Objects;
 import java.util.Optional;
 
 public class SimpleUserAuthenticateFilter extends OncePerRequestFilter {
-    private final UserService userService;
+    private final PosterService posterService;
 
-    protected SimpleUserAuthenticateFilter(UserService userService) {
-        this.userService = userService;
+    protected SimpleUserAuthenticateFilter(PosterService posterService) {
+        this.posterService = posterService;
     }
 
     public void attemptAuthentication(HttpServletRequest request) throws AuthenticationException {
@@ -31,7 +31,7 @@ public class SimpleUserAuthenticateFilter extends OncePerRequestFilter {
                 .filter(c -> Objects.equals(c.getName(), "userAccount"))
                 .findAny()
                 .map(Cookie::getValue)
-                .flatMap(userService::findByAccount)
+                .flatMap(posterService::findByAccount)
                 .ifPresent(iUserVo ->
                         SecurityContextHolder.getContext()
                                 .setAuthentication(new UsernamePasswordAuthenticationToken(iUserVo, null, List.of()))
