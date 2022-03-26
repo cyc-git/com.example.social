@@ -17,14 +17,14 @@ import java.util.List;
 public class PosterFollowController {
     private final PosterFollowFacade posterFollowFacade;
 
-    @GetMapping("find-all-followers")
+    @GetMapping("all-followers")
     public ResponseDto<List<PosterDto>> findFollower(
             @AuthenticationPrincipal IPosterVo posterVo
     ) {
         return ResponseDto.of(posterFollowFacade.findFollower(posterVo.getId()));
     }
 
-    @GetMapping("find-all-followed")
+    @GetMapping("all-followed")
     public ResponseDto<List<PosterDto>> findFollowed(
             @AuthenticationPrincipal IPosterVo posterVo
     ) {
