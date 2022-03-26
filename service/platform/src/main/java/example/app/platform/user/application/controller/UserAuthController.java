@@ -25,7 +25,9 @@ public class UserAuthController {
     ) {
         final var user = userAuthFacade.login(account, password);
 
-        response.addCookie(new Cookie("userAccount", user.getAccount()));
+        final var cookie = new Cookie("userAccount", user.getAccount());
+        cookie.setPath("/");
+        response.addCookie(cookie);
 
         return ResponseDto.of(user);
     }
