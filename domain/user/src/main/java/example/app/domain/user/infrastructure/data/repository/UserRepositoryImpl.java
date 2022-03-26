@@ -19,7 +19,7 @@ public class UserRepositoryImpl implements UserRepository {
     public Optional<UserVo> findByAccount(String account) {
         return Optional.ofNullable(
                 ctx.selectFrom(USER)
-                        .where(USER.ACCOUNT.eq(account))
+                        .where(USER.ACCOUNT.equalIgnoreCase(account))
                         .and(USER.DELETED_AT.isNull())
                         .fetchOneInto(UserVo.class)
         );

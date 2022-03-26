@@ -53,7 +53,7 @@ public class UserRegisterRepositoryImpl implements UserRegisterRepository {
         return ctx.fetchCount(
                 ctx.select(USER.ACCOUNT)
                         .from(USER)
-                        .where(USER.ACCOUNT.eq(account))
+                        .where(USER.ACCOUNT.equalIgnoreCase(account))
         ) != 0;
     }
 }

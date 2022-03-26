@@ -1,6 +1,7 @@
 package example.app.domain.user;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
@@ -13,6 +14,10 @@ import java.util.Optional;
 public class UserService {
     private final UserRepository userRepository;
 
+    @Cacheable(
+            cacheNames = UserCacheName.SINGLE_BY_ACCOUNT,
+            key = "#account.toLowerCase()"
+    )
     public Optional<IUserVo> findByAccount(@NotBlank String account) {
         return userRepository.findByAccount(account).map(u -> u);
     }
