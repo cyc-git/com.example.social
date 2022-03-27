@@ -86,6 +86,9 @@ public class PosterFollowCommandService {
             @NotNull Long posterId,
             @NotNull Long followedBy
     ) {
+        if (Objects.equals(posterId, followedBy)) {
+            return;
+        }
         posterFollowCommandRepository.unfollow(posterId, followedBy);
     }
 }

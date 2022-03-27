@@ -21,7 +21,7 @@ public class PosterFollowService {
     }
 
     @Cacheable(PosterFollowCacheName.MULTIPLE_BY_FOLLOWED_BY)
-    public List<IPosterFollowVo> findByFollowedBy(@NotNull Long posterId) {
-        return Collections.unmodifiableList(posterFollowRepository.findByFollowedBy(posterId));
+    public List<IPosterFollowVo> findByFollowedBy(@NotNull Long followedBy) {
+        return Collections.unmodifiableList(posterFollowRepository.findByFollowedBy(followedBy));
     }
 }
