@@ -41,6 +41,7 @@ public class UserAuthController {
     public void logout(HttpServletResponse response) {
         final var cookie = new Cookie("userId", "");
         cookie.setMaxAge(0);
+        cookie.setPath("/");
         response.addCookie(cookie);
     }
 }
